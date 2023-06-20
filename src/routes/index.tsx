@@ -1,16 +1,9 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
+import FreePlayPresentation from '~/domain/FreePlay/presentation/FreePlayPresentation';
 
 export default component$(() => {
-  return (
-    <div>
-      <div class='player'>
-        <div>
-          <h1 contentEditable='true'>Player 1</h1>
-        </div>
-      </div>
-    </div>
-  );
+  return <FreePlayPresentation />;
 });
 
 export const head: DocumentHead = {
