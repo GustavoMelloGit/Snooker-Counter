@@ -29,7 +29,7 @@ export default component$(() => {
     );
     const newPlayer: Player = {
       color: nonRepeatedColors[0],
-      name: freePlayConfig.initialPlayerName(players.value.length),
+      name: freePlayConfig.initialPlayerName(players.value.length + 1),
       score: freePlayConfig.initialPlayerScore,
     };
     players.value = [...players.value, newPlayer];
