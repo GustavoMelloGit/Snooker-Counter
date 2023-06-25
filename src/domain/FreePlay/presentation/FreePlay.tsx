@@ -2,21 +2,14 @@ import { $, component$, useSignal } from '@builder.io/qwik';
 import Button from '~/components/Button/Button';
 import { freePlayConfig } from '../data/constants/config';
 import { playersColors } from '../data/constants/playerColors';
+import { freePlayPlayerFactory } from '../data/factory/freePlayPlayerFactory';
 import type { Player } from '../model/Player';
 import styles from './FreePlay.module.css';
 import FreePlayPresentationFooter from './FreePlayFooter';
 
 const initialPlayers: Player[] = [
-  {
-    color: freePlayConfig.initialPlayerColor(0),
-    name: freePlayConfig.initialPlayerName(1),
-    score: freePlayConfig.initialPlayerScore,
-  },
-  {
-    color: freePlayConfig.initialPlayerColor(1),
-    name: freePlayConfig.initialPlayerName(2),
-    score: freePlayConfig.initialPlayerScore,
-  },
+  freePlayPlayerFactory(0),
+  freePlayPlayerFactory(1),
 ];
 
 export default component$(() => {
