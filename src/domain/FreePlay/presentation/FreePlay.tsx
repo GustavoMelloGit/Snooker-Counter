@@ -66,7 +66,7 @@ export default component$(() => {
                   <Button
                     onClick$={() => {
                       const newScore = player.score - freePlayConfig.scoreStep;
-                      if (newScore <= freePlayConfig.minPlayerScore) return;
+                      if (newScore < freePlayConfig.minPlayerScore) return;
                       player.score = newScore;
                       players.value = [...players.value];
                     }}
