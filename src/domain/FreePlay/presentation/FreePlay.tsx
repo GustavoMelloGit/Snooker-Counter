@@ -42,11 +42,14 @@ export default component$(() => {
           return (
             <div
               key={`${player.name},${player.color},${player.score}`}
-              class={styles.player}
+              class={styles.playerContainer}
               style={{
                 backgroundColor: player.color,
               }}
               onClick$={() => {
+                const newAmountOfPlayers = players.value.length - 1;
+                if (newAmountOfPlayers < freePlayConfig.minNumberOfPlayers)
+                  return;
                 players.value = players.value.filter((_, i) => i !== index);
               }}
             >
@@ -54,6 +57,7 @@ export default component$(() => {
                 onClick$={(e) => {
                   e.stopPropagation();
                 }}
+                class={styles.playerBox}
               >
                 <h1 id={styles.playerName} contentEditable='true'>
                   {player.name}
@@ -61,16 +65,20 @@ export default component$(() => {
                 <div id={styles.playerScoreActionsWrapper}>
                   <Button
                     onClick$={() => {
-                      player.score--;
+                      const newScore = player.score - freePlayConfig.scoreStep;
+                      if (newScore <= freePlayConfig.minPlayerScore) return;
+                      player.score = newScore;
                       players.value = [...players.value];
                     }}
                   >
                     -
                   </Button>
-                  <h2>{player.score}</h2>
+                  <h2 id={styles.playerScore}>{player.score}</h2>
                   <Button
                     onClick$={() => {
-                      player.score++;
+                      const newScore = player.score + freePlayConfig.scoreStep;
+                      if (newScore >= freePlayConfig.maxPlayerScore) return;
+                      player.score = newScore;
                       players.value = [...players.value];
                     }}
                   >
