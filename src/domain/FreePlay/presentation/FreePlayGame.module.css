@@ -29,7 +29,7 @@
 
 .playerBox {
   width: 100%;
-  max-width: 140px;
+  max-width: 160px;
   container: playerBox / inline-size;
 }
 

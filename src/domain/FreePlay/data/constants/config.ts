@@ -7,6 +7,6 @@ export const freePlayConfig = {
   minPlayerScore: 0,
   initialPlayerScore: 0,
   scoreStep: 1,
-  initialPlayerName: (position: number): string => `Player ${position}`,
+  initialPlayerName: (position: number): string => `Jogador ${position}`,
   initialPlayerColor: (position: number): string => playersColors[position],
 };
