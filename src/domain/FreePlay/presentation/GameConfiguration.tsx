@@ -7,6 +7,7 @@ import Button from '~/components/Button/Button';
 import Input from '~/components/Input/Input';
 import Modal from '~/components/Modal/Modal';
 import { freePlayConfig } from '../data/constants/config';
+import styles from './GameConfiguration.module.css';
 
 const configSchema = z.object({
   players: z
@@ -40,38 +41,44 @@ export default component$<Props>(({ onSubmit$ }) => {
 
   return (
     <Modal>
-      <Form onSubmit$={handleSubmit}>
-        <h1>Configuração inicial</h1>
-        <p>Escolha o número de jogadores</p>
-        <Field name='players' type='number'>
-          {(field, props) => (
-            <Input
-              {...props}
-              type='number'
-              name='players'
-              id='players'
-              value={field.value}
-              min={freePlayConfig.minNumberOfPlayers}
-              max={freePlayConfig.maxNumberOfPlayers}
-            />
-          )}
-        </Field>
-        <p>Escolha a pontuação inicial</p>
-        <Field name='score' type='number'>
-          {(field, props) => (
-            <Input
-              {...props}
-              type='number'
-              name='score'
-              id='score'
-              value={field.value}
-              min={0}
-            />
-          )}
-        </Field>
+      <div class={styles.container}>
+        <Form onSubmit$={handleSubmit}>
+          <h1 class={styles.title}>Configuração inicial</h1>
+          <label for='players' class={styles.label}>
+            Escolha o número de jogadores
+          </label>
+          <Field name='players' type='number'>
+            {(field, props) => (
+              <Input
+                {...props}
+                type='number'
+                name='players'
+                id='players'
+                value={field.value}
+                min={freePlayConfig.minNumberOfPlayers}
+                max={freePlayConfig.maxNumberOfPlayers}
+              />
+            )}
+          </Field>
+          <label for='score' class={styles.label}>
+            Escolha a pontuação inicial
+          </label>
+          <Field name='score' type='number'>
+            {(field, props) => (
+              <Input
+                {...props}
+                type='number'
+                name='score'
+                id='score'
+                value={field.value}
+                min={0}
+              />
+            )}
+          </Field>
 
-        <Button type='submit'>Iniciar</Button>
-      </Form>
+          <Button type='submit'>Iniciar</Button>
+        </Form>
+      </div>
     </Modal>
   );
 });
