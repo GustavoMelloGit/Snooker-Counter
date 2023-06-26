@@ -23,7 +23,18 @@ export default component$<Props>(({ players }) => {
               }}
             >
               <div class={styles.playerBox}>
-                <h1 id={styles.playerName} contentEditable='true'>
+                <h1
+                  id={styles.playerName}
+                  contentEditable='true'
+                  onBlur$={(_, element) => {
+                    const newName = element.textContent;
+                    const oldName = player.name;
+                    if (newName && newName !== oldName) {
+                      player.name = newName;
+                      players.value = [...players.value];
+                    }
+                  }}
+                >
                   {player.name}
                 </h1>
                 <div id={styles.playerScoreActionsWrapper}>
